@@ -1,0 +1,37 @@
+container{
+    display: grid;
+    height: 100vh;
+    grid-template-rows: minmax(120px, 200px) 1fr;
+}
+
+header{
+    grid-row: 1/1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+
+}
+
+#new-book{
+    width: 100px;
+}
+
+main{
+    grid-row: 2/3;
+    display: grid;
+    grid-template-rows: minmax(200px, 300px) 1fr;
+}
+
+#book-form {
+    display: none;
+  }
+
+  #book-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 50px;
+  }
