@@ -17,16 +17,26 @@
         <main>
             <form id="book-form">
                 <label>
-                Title:
-                <input type="text" id="title" required>
+                    <p>Title:</p>
+                    <input type="text" id="title" required>
                 </label>
                 <br>
                 <label>
-                Author:
-                <input type="text" id="author" required>
+                    <p>Author:</p>
+                    <input type="text" id="author" required>
                 </label>
                 <br>
-                <input type="submit" value="Submit">
+                <label>
+                    <p>Number of Pages: </p>
+                    <input type="number" id="pages" required>
+                </label>
+                <br>
+                <label>
+                    <p>Read Status: </p>
+                    <input type="checkbox" id="read" value="false">
+                </label>
+                <br>
+                <input type="submit" value="Submit" id="submit">
             </form>
             <display id="book-display">
             </display>
