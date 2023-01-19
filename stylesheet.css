@@ -7,7 +7,7 @@ container{
     display: grid;
     height: 100vh;
     grid-template-rows: 120px 1fr;
-    padding: 15px;
+    padding-top: 15px;
 }
 
 header{
@@ -27,7 +27,9 @@ h1{
 main{
     grid-row: 2/3;
     display: grid;
-    grid-template-rows: 400px 1fr;
+    grid-template-rows: 300px 1fr;
+    padding-left: 10px;
+    padding-bottom: 10px;
 }
 
 #book-form {
