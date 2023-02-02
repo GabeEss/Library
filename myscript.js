@@ -18,51 +18,53 @@ form.addEventListener('submit', (e) => {
   const title = document.querySelector('#title').value;
   const author = document.querySelector('#author').value;
   const pageNumber = document.querySelector('#pages').value;
-  const readStatus = document.querySelector('#read').value;
+  const checkbox = document.getElementById('read');
+  let readStatus = false;
+  if(checkbox.checked) readStatus = true;
   const book = new Book(title, author, pageNumber, readStatus);
   addBookToLibrary(book);
   displayLibrary();
   document.getElementById('book-form').reset();
 });
 
-// Book constructor, contains a title, an author, the number of pages, and the readStatus (boolean)
-function Book(title, author, pageNumber, readStatus) {
-  let _title = title;
-  let _author = author;
-  let _pageNum = pageNumber;
-  let _readStatus = readStatus;
+// Book class, contains a title, an author, the number of pages, and the readStatus (boolean)
+class Book {
+  constructor (title, author, pageNumber, readStatus) {
+  this._title = title;
+  this._author = author;
+  this._pageNum = pageNumber;
+  this._readStatus = readStatus;
+  }
 
-  this.getTitle = function () {
-    return _title;
-  };
+  get title() {
+    return this._title; }
 
-  this.setTitle = function (title) {
-    _title = title;
-  };
+  set title(title) {
+    this._title = title;
+  }
 
-  this.getAuthor = function () {
-    return _author;
-  };
+  get author() { 
+    return this._author = author }
 
-  this.setAuthor = function (author) {
-    _author = author;
-  };
+  set author(author) {
+    this._author = author;
+  }
 
-  this.getPages = function () {
-    return _pageNum;
-  };
+  get pages() {
+    return this._pageNum;
+  }
 
-  this.setPages = function (pageNumber) {
-    _pageNum = pageNumber;
-  };
+  set pages(pageNumber) {
+    this._pageNum = pageNumber;
+  }
 
-  this.getRead = function () {
-    return _readStatus;
-  };
+  get read() {
+    return this._readStatus;
+  }
 
-  this.setRead = function (readStatus) {
-    _readStatus = readStatus;
-  };
+  set read(readStatus) {
+    this._readStatus = readStatus;
+  }
 }
 
 function addBookToLibrary(book) {
@@ -75,10 +77,10 @@ function addBookToLibrary(book) {
 
   // sort the library, js sort method is quicksort, might not be the most efficient with large datasets
   myLibrary.sort((a, b) => {
-    if (a.getTitle() < b.getTitle()) {
+    if (a._title < b._title) {
       return -1;
     }
-    if (a.getTitle() > b.getTitle()) {
+    if (a._title > b._title) {
       return 1;
     }
     return 0;
@@ -93,20 +95,20 @@ function displayLibrary() {
     container.classList.add('a-book');
 
     const title = document.createElement('p');
-    title.textContent = `Title: ${book.getTitle()}`;
+    title.textContent = `Title: ${book._title}`;
     container.appendChild(title);
 
     const author = document.createElement('p');
-    author.textContent = `Author: ${book.getAuthor()}`;
+    author.textContent = `Author: ${book._author}`;
     container.appendChild(author);
 
     const pages = document.createElement('p');
-    pages.textContent = `Number of Pages: ${book.getPages()}`;
+    pages.textContent = `Number of Pages: ${book._pageNum}`;
     container.appendChild(pages);
 
     const read = document.createElement('p');
     let answer;
-    if (book.getRead() === true) { answer = 'I have read this book!'; } else { answer = 'I have not read this book!'; }
+    if (book.read === true) { answer = 'I have read this book!'; } else { answer = 'I have not read this book!'; }
     read.textContent = `Read Status: ${answer}`;
     container.appendChild(read);
 
@@ -115,11 +117,11 @@ function displayLibrary() {
     changeRead.setAttribute('id', 'change-read');
 
     changeRead.addEventListener('click', () => {
-      if (book.getRead() === true) {
-        book.setRead(false);
+      if (book._readStatus === true) {
+        book._readStatus = false;
         answer = 'I have not read this book!';
       } else {
-        book.setRead(true);
+        book._readStatus = true;
         answer = 'I have read this book!';
       }
 
@@ -144,6 +146,6 @@ function displayLibrary() {
     container.appendChild(changeRemove);
     if (removed === false) { display.appendChild(container); }
 
-    console.log(myLibrary[index].getTitle());
+    console.log(myLibrary[index]._title);
   });
 }
